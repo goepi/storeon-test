@@ -3,8 +3,10 @@ import { useState, useEffect, useMemo } from 'react';
 
 export const initialize = (user, app) => store.dispatch('credentials/add', { user, app });
 
+// selector
 const isInitialized = (credentials) => credentials.user && credentials.app;
 
+// method exposed through the hook
 const saveSettings = async (data) => {
   let { credentials } = store.get();
   if (!isInitialized(credentials)) {
@@ -18,6 +20,7 @@ const saveSettings = async (data) => {
   return true;
 };
 
+// hook exposing api
 export const useSettings = () => {
   let rerender = useState({});
 
